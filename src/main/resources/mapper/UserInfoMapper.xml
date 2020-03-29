@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zz.csms.dao.UserInfoDao">
+    <sql id="Base_Column_List">
+        id,name,password,gmt_create,gmt_modified
+    </sql>
+
+    <select id="getUserById" resultType="com.zz.csms.module.UserInfo">
+      select <include refid="Base_Column_List" />
+      from user_info
+      where id = #{Id}
+    </select>
+
+    <insert id="insertUser" parameterType="com.zz.csms.module.UserInfo"
+            useGeneratedKeys="true" keyProperty="Id">
+    insert into user_info (`name`, password)
+    value (#{name}, #{password})
+    </insert>
+</mapper>
